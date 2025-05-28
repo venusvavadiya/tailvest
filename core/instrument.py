@@ -32,7 +32,7 @@ OptionStyle = Literal["american", "european"]
 
 
 @dataclass(frozen=True)
-class OptionContract(Instrument):
+class Option(Instrument):
     underlying: Instrument
     expiry: date
     strike: Decimal
