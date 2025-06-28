@@ -6,13 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "lint": "biome check",
+    "lint:fix": "biome check --write --unsafe",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/themes": "^3.2.1",
+    "decimal.js": "^10.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
