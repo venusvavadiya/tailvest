@@ -23,3 +23,8 @@ class Quote:
     timestamp: datetime
     bid: Bid
     ask: Ask
+
+
+@dataclass(frozen=True)
+class OptionQuote(Quote):
+    open_interest: int
