@@ -10,5 +10,10 @@ CREATE TABLE yf_quotes
     oi              INT,
     iv              DECIMAL,
     timestamp       TIMESTAMP,
-    PRIMARY KEY (contract)
+    PRIMARY KEY (contract, timestamp)
 )
+
+CREATE VIEW yf_quotes_latest AS
+SELECT DISTINCT ON (contract) *
+FROM yf_quotes
+ORDER BY contract, timestamp DESC;
