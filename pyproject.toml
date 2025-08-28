@@ -1,14 +1,21 @@
-[tool.ruff]
-line-length = 88
-target-version = "py311"
-
-[tool.ruff.lint]
-select = [
-  "E",    # pycodestyle (errors)
-  "F",    # pyflakes
-  "B",    # bugbear (code smells)
-  "I",    # isort (import sorting)
-  "C90",  # McCabe complexity
-  "RUF",  # Ruff-specific rules
+[project]
+name = "tailvest"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "dotenv>=0.9.9",
+  "fastapi[standard]>=0.116.1",
+  "langchain>=0.3.27",
+  "numpy>=2.3.2",
+  "psycopg>=3.2.9",
+  "pydantic>=2.11.7",
+  "pypika>=0.48.9",
+  "yfinance>=0.2.65",
 ]
-fixable = ["ALL"]
+
+[dependency-groups]
+dev = [
+  "ruff>=0.12.3",
+]

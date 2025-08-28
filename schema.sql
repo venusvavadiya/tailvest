@@ -11,7 +11,7 @@ CREATE TABLE yf_quotes
     iv              DECIMAL,
     timestamp       TIMESTAMP,
     PRIMARY KEY (contract, timestamp)
-)
+);
 
 CREATE VIEW yf_quotes_latest AS
 SELECT DISTINCT ON (contract) *
