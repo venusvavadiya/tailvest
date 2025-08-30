@@ -7,7 +7,13 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["dist", "node_modules", "public"]
+    "ignore": [
+      "dist",
+      "node_modules",
+      "public",
+      "src/client",
+      "src/routeTree.gen.ts"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -44,31 +50,12 @@
         "all": true,
         "noDefaultExport": "off",
         "noNamespaceImport": "off",
+        "noNonNullAssertion": "off",
+        "useNamingConvention": "off",
         "useFilenamingConvention": {
           "level": "warn",
           "options": {
             "filenameCases": ["kebab-case"]
-          }
-        },
-        "useNamingConvention": {
-          "level": "warn",
-          "options": {
-            "conventions": [
-              {
-                "selector": {
-                  "kind": "objectLiteralProperty",
-                  "scope": "any"
-                },
-                "formats": ["PascalCase", "camelCase", "CONSTANT_CASE"]
-              },
-              {
-                "selector": {
-                  "kind": "typeProperty",
-                  "scope": "any"
-                },
-                "formats": ["PascalCase", "camelCase", "CONSTANT_CASE"]
-              }
-            ]
           }
         }
       },
