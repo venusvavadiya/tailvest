@@ -1,22 +1,27 @@
 import { apiClient } from "@/api-client";
-import { getExpiries } from "@/client";
+import { getOptions } from "@/client";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/tickers/$ticker/")({
+export const Route = createFileRoute("/tickers/$ticker/options")({
   component: RouteComponent,
+  validateSearch: (search: { expiry?: string }) => search,
 });
 
 function RouteComponent() {
   const params = Route.useParams();
+  const search = Route.useSearch();
 
   const expiriesQuery = useQuery({
     queryKey: ["expiries", params.ticker],
     queryFn: () =>
-      getExpiries({
+      getOptions({
         client: apiClient,
         path: {
           ticker: params.ticker,
+        },
+        query: {
+          expiry: search.expiry,
         },
       }),
   });

@@ -10,58 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TickersTickerIndexRouteImport } from './routes/tickers/$ticker/index'
-import { Route as TickersTickerExpiriesExpiryIndexRouteImport } from './routes/tickers/$ticker/expiries/$expiry/index'
+import { Route as TickersTickerOptionsRouteImport } from './routes/tickers/$ticker/options'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TickersTickerIndexRoute = TickersTickerIndexRouteImport.update({
-  id: '/tickers/$ticker/',
-  path: '/tickers/$ticker/',
+const TickersTickerOptionsRoute = TickersTickerOptionsRouteImport.update({
+  id: '/tickers/$ticker/options',
+  path: '/tickers/$ticker/options',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TickersTickerExpiriesExpiryIndexRoute =
-  TickersTickerExpiriesExpiryIndexRouteImport.update({
-    id: '/tickers/$ticker/expiries/$expiry/',
-    path: '/tickers/$ticker/expiries/$expiry/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tickers/$ticker': typeof TickersTickerIndexRoute
-  '/tickers/$ticker/expiries/$expiry': typeof TickersTickerExpiriesExpiryIndexRoute
+  '/tickers/$ticker/options': typeof TickersTickerOptionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tickers/$ticker': typeof TickersTickerIndexRoute
-  '/tickers/$ticker/expiries/$expiry': typeof TickersTickerExpiriesExpiryIndexRoute
+  '/tickers/$ticker/options': typeof TickersTickerOptionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/tickers/$ticker/': typeof TickersTickerIndexRoute
-  '/tickers/$ticker/expiries/$expiry/': typeof TickersTickerExpiriesExpiryIndexRoute
+  '/tickers/$ticker/options': typeof TickersTickerOptionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tickers/$ticker' | '/tickers/$ticker/expiries/$expiry'
+  fullPaths: '/' | '/tickers/$ticker/options'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tickers/$ticker' | '/tickers/$ticker/expiries/$expiry'
-  id:
-    | '__root__'
-    | '/'
-    | '/tickers/$ticker/'
-    | '/tickers/$ticker/expiries/$expiry/'
+  to: '/' | '/tickers/$ticker/options'
+  id: '__root__' | '/' | '/tickers/$ticker/options'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TickersTickerIndexRoute: typeof TickersTickerIndexRoute
-  TickersTickerExpiriesExpiryIndexRoute: typeof TickersTickerExpiriesExpiryIndexRoute
+  TickersTickerOptionsRoute: typeof TickersTickerOptionsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -73,18 +58,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tickers/$ticker/': {
-      id: '/tickers/$ticker/'
-      path: '/tickers/$ticker'
-      fullPath: '/tickers/$ticker'
-      preLoaderRoute: typeof TickersTickerIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tickers/$ticker/expiries/$expiry/': {
-      id: '/tickers/$ticker/expiries/$expiry/'
-      path: '/tickers/$ticker/expiries/$expiry'
-      fullPath: '/tickers/$ticker/expiries/$expiry'
-      preLoaderRoute: typeof TickersTickerExpiriesExpiryIndexRouteImport
+    '/tickers/$ticker/options': {
+      id: '/tickers/$ticker/options'
+      path: '/tickers/$ticker/options'
+      fullPath: '/tickers/$ticker/options'
+      preLoaderRoute: typeof TickersTickerOptionsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -92,8 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TickersTickerIndexRoute: TickersTickerIndexRoute,
-  TickersTickerExpiriesExpiryIndexRoute: TickersTickerExpiriesExpiryIndexRoute,
+  TickersTickerOptionsRoute: TickersTickerOptionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
