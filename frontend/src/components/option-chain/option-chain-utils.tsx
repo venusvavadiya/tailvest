@@ -17,7 +17,7 @@ export function toOptionStraddle(options: OptionData[]): OptionStraddle {
 
     if (option.kind === "call") {
       straddle[option.strike]!.call = option;
-    } else {
+    } else if (option.kind === "put") {
       straddle[option.strike]!.put = option;
     }
   }
