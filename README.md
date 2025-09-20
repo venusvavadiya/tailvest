@@ -2,6 +2,10 @@
 
 WIP
 
+## Screenshots
+
+![Options View](./docs/screenshots/pltr-options.png)
+
 ## Development Setup
 
 ### Backend:
