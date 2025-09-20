@@ -32,6 +32,7 @@ class OptionData(BaseModel):
 
 class GetOptionsResponse(BaseModel):
     expiries: list[str]
+    expiry: str
     options: list[OptionData]
 
 
@@ -48,7 +49,7 @@ def get_options(ticker: str, expiry: Optional[str] = Query(default=None)):
 
     options = yf_fetch.fetch_option_chain(ticker, expiry)
 
-    return GetOptionsResponse(expiries=expiries, options=options)
+    return GetOptionsResponse(expiries=expiries, expiry=expiry, options=options)
 
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")

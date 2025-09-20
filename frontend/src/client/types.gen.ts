@@ -9,6 +9,10 @@ export type GetOptionsResponse = {
      */
     expiries: Array<string>;
     /**
+     * Expiry
+     */
+    expiry: string;
+    /**
      * Options
      */
     options: Array<OptionData>;
