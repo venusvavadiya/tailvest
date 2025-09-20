@@ -1,7 +1,10 @@
 import { apiClient } from "@/api-client";
 import { getOptions } from "@/client";
+import { OptionChain } from "@/components/option-chain/option-chain";
+import { Separator } from "@/components/ui/separator";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback } from "react";
 
 export const Route = createFileRoute("/tickers/$ticker/options")({
   component: RouteComponent,
@@ -11,9 +14,10 @@ export const Route = createFileRoute("/tickers/$ticker/options")({
 function RouteComponent() {
   const params = Route.useParams();
   const search = Route.useSearch();
+  const navigate = Route.useNavigate();
 
   const expiriesQuery = useQuery({
-    queryKey: ["expiries", params.ticker],
+    queryKey: ["expiries", params.ticker, search.expiry],
     queryFn: () =>
       getOptions({
         client: apiClient,
@@ -26,6 +30,13 @@ function RouteComponent() {
       }),
   });
 
+  const onExpiryChange = useCallback(
+    (expiry: string) => {
+      navigate({ search: { expiry } });
+    },
+    [navigate],
+  );
+
   if (expiriesQuery.isLoading) {
     return <div>Loading...</div>;
   }
@@ -34,5 +45,24 @@ function RouteComponent() {
     return <div>Error: {expiriesQuery.error.message}</div>;
   }
 
-  return <div>{JSON.stringify(expiriesQuery.data)}</div>;
+  if (!expiriesQuery.data?.data) {
+    return <div>No data</div>;
+  }
+
+  const expiriesData = expiriesQuery.data.data;
+
+  return (
+    <div className="flex w-screen h-screen overflow-hidden">
+      <div className="w-1/2 overflow-hidden">
+        <OptionChain
+          expiries={expiriesData.expiries}
+          expiry={expiriesData.expiry}
+          options={expiriesData.options}
+          onExpiryChange={onExpiryChange}
+        />
+      </div>
+
+      <Separator orientation="vertical" className="h-screen" />
+    </div>
+  );
 }
