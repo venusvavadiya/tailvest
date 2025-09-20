@@ -54,6 +54,10 @@ function RouteComponent() {
   return (
     <div className="flex w-screen h-screen overflow-hidden">
       <div className="w-1/2 overflow-hidden">
+        <h2 className="text-xl font-bold px-2 py-1">{params.ticker}</h2>
+
+        <Separator orientation="horizontal" className="w-full" />
+
         <OptionChain
           expiries={expiriesData.expiries}
           expiry={expiriesData.expiry}
@@ -63,6 +67,12 @@ function RouteComponent() {
       </div>
 
       <Separator orientation="vertical" className="h-screen" />
+
+      <div className="w-1/2 overflow-hidden">
+        <h2 className="text-xl font-bold px-2 py-1">Strategy Builder</h2>
+
+        <Separator orientation="horizontal" className="w-full" />
+      </div>
     </div>
   );
 }

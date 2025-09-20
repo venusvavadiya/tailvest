@@ -23,3 +23,10 @@ export function toOptionStraddle(options: OptionData[]): OptionStraddle {
   }
   return straddle;
 }
+
+export function straddleCompareFn(
+  a: [string, { call?: OptionData; put?: OptionData }],
+  b: [string, { call?: OptionData; put?: OptionData }],
+) {
+  return Number(a[0]) - Number(b[0]);
+}
