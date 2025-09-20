@@ -63,7 +63,7 @@ export type OptionData = {
     /**
      * Oi
      */
-    oi: number;
+    oi: number | null;
     /**
      * Iv
      */

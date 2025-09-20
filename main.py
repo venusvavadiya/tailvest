@@ -25,7 +25,7 @@ class OptionData(BaseModel):
     kind: str
     bid: float
     ask: float
-    oi: int
+    oi: Optional[int]
     iv: float
     timestamp: datetime
 
